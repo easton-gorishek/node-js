@@ -5,11 +5,10 @@ function start(route, handle) {
     function onRequest(req, res) {
         const pathname = url.parse(req.url).pathname;
         console.log('Request for ' + pathname + ' received.');
-        
-        route(handle, pathname);
 
         res.writeHead(200, { 'Content-Type': 'text/plan' });
-        res.write('Hello World!');
+        const content = route(handle, pathname);
+        res.write(content);
         res.end();
     }
 
